@@ -1,10 +1,9 @@
-
 from re import findall
 phone_numbers = {}
 
 
 # Декоратор
-def logged_func(func):
+def input_error(func):
     def inner(*args, **kwargs):
         try:
             result = func(*args, **kwargs)
@@ -23,7 +22,7 @@ def logged_func(func):
 
 
 ## Функція для додавання номеру в список
-@logged_func
+@input_error
 def add(name, number):
     
     new_contact = {name:number}
@@ -33,7 +32,7 @@ def add(name, number):
 
 
 ## Функція для зміни номеру для контакту
-@logged_func
+@input_error
 def change(name, new_number):
     
     if name.capitalize() in phone_numbers:
@@ -46,7 +45,7 @@ def change(name, new_number):
 
 
 ## Функція для пошуку номера з ігноруванням регістру
-@logged_func
+@input_error
 def phone(name):
 
     for key, value in phone_numbers.items():
