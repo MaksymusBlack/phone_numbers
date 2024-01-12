@@ -1,6 +1,6 @@
 
 from re import findall
-phone_numbers = {'Maki': '05684457', 'John': '12345678', 'Alice': '98765432'}
+phone_numbers = {}
 
 
 # Декоратор
@@ -39,6 +39,7 @@ def change(name, new_number):
     if name.capitalize() in phone_numbers:
         phone_numbers[name.capitalize()] = new_number
         return f'Number of {name} has been changed to {new_number}'
+    # На випадок, якщо нема такого імені в словнику
     else:
         return f'Number {name} not in the list. Give me name and phone please'
     
@@ -87,9 +88,7 @@ def command_processing(input_command):
 def main():
     
     while True:
-
         input_command = input()
-
         if command_processing(input_command) == False:
             break
         else:
